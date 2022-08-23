@@ -2,6 +2,7 @@ import {Component} from 'react';
 
 import './employees-add-form.css';
 
+// Управляемый компонент
 class EmployeesAddForm extends Component{
     constructor(props) {
         super(props);
@@ -19,6 +20,7 @@ class EmployeesAddForm extends Component{
 
     render() {
         const {name, salary} = this.state;
+        const {onAdd} = this.props;
 
         return (
             <div className="app-add-form">
@@ -39,7 +41,13 @@ class EmployeesAddForm extends Component{
                         onChange={this.onValueChange}/>
     
                     <button type="submit"
-                            className="btn btn-outline-light">Добавить</button>
+                            className="btn btn-outline-light"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                onAdd(name, salary);
+                            }}>
+                            Добавить
+                    </button>
                 </form>
             </div>
         );
